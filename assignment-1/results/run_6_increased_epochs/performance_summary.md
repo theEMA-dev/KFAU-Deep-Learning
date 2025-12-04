@@ -1,12 +1,12 @@
-# Performance Summary of High Learning Rate Config (Run 5)
+# Performance Summary of Increased Epochs Config (Run 6)
 
 ## Summary
-11.442
-9.767
-11.133
-9.783
-78.433
-Accuracy: mean=24.112 std=27.169 n=5
+99.142
+99.150
+99.025
+99.300
+99.175
+Accuracy: mean=99.158 std=0.088 n=5
 
 ## Model Definitions
 ```py
@@ -24,10 +24,9 @@ def define_model():
     # Dense Layers
     model.add(Dense(100, activation='relu', kernel_initializer='he_uniform'))
     model.add(Dense(10, activation='softmax'))
-    
-    opt = SGD(learning_rate=0.1, momentum=0.9)
+
+    opt = SGD(learning_rate=0.01, momentum=0.9)
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
-    
     return model
 
 def evaluate_model(dataX, dataY, n_folds=5):
@@ -41,7 +40,7 @@ def evaluate_model(dataX, dataY, n_folds=5):
         # select rows for train and test
         trainX, trainY, testX, testY = dataX[train_ix], dataY[train_ix], dataX[test_ix], dataY[test_ix]
         # fit model
-        history = model.fit(trainX, trainY, epochs=10, batch_size=32, validation_data=(testX, testY), verbose=0)
+        history = model.fit(trainX, trainY, epochs=50, batch_size=32, validation_data=(testX, testY), verbose=0)
         # evaluate model
         loss, acc = model.evaluate(testX, testY, verbose=0)
         print('> %.3f' % (acc * 100.0))

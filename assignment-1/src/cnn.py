@@ -55,7 +55,7 @@ def define_model():
     # Note: The PDF has 'lr' for learning rate, which is deprecated in modern Keras/TensorFlow, 
     # but we use it here to match the source code exactly.
     # opt = SGD(lr=0.01, momentum=0.9) 
-    opt = SGD(learning_rate=0.1, momentum=0.9)  # Updated for modern Keras
+    opt = SGD(learning_rate=0.01, momentum=0.9)  # Updated for modern Keras
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
     
     # --- VISUALIZATION ADDON ---
@@ -79,7 +79,7 @@ def evaluate_model(dataX, dataY, n_folds=5):
         # select rows for train and test
         trainX, trainY, testX, testY = dataX[train_ix], dataY[train_ix], dataX[test_ix], dataY[test_ix]
         # fit model
-        history = model.fit(trainX, trainY, epochs=10, batch_size=32, validation_data=(testX, testY), verbose=0)
+        history = model.fit(trainX, trainY, epochs=20, batch_size=32, validation_data=(testX, testY), verbose=0)
         # evaluate model
         loss, acc = model.evaluate(testX, testY, verbose=0)
         print('> %.3f' % (acc * 100.0))
