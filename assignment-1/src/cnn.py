@@ -58,12 +58,13 @@ def define_model():
     opt = SGD(learning_rate=0.01, momentum=0.9)  # Updated for modern Keras
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
     
-    # --- VISUALIZATION ADDON ---
-    from keras.utils import plot_model
-    # Generates a visual plot of the model and saves it as 'cnn_baseline_model.png'
+    # --- VISUALIZATION ADDON --- (Uncomment to use) ---
+    # from keras.utils import plot_model
+    # Generates a visual plot of the model and saves it as 'model_graph.png'
+    # REQUIRES GRAPHVIZ EXTERNAL DEPENDENCY
     # Use 'show_shapes=True' to include layer input/output dimensions
-    plot_model(model, to_file='model_graph.png', show_shapes=True, show_layer_names=True)
-    # -------------------------
+    # plot_model(model, to_file='model_graph.png', show_shapes=True, show_layer_names=True)
+    # --------------------------------------------------
     
     return model
 
@@ -79,7 +80,7 @@ def evaluate_model(dataX, dataY, n_folds=5):
         # select rows for train and test
         trainX, trainY, testX, testY = dataX[train_ix], dataY[train_ix], dataX[test_ix], dataY[test_ix]
         # fit model
-        history = model.fit(trainX, trainY, epochs=20, batch_size=32, validation_data=(testX, testY), verbose=0)
+        history = model.fit(trainX, trainY, epochs=10, batch_size=32, validation_data=(testX, testY), verbose=0)
         # evaluate model
         loss, acc = model.evaluate(testX, testY, verbose=0)
         print('> %.3f' % (acc * 100.0))
