@@ -1,6 +1,6 @@
 # KFAU Deep Learning
 
-This repository contains coursework and assignments for the Deep Learning course at King Faisal University (KFAU).
+This repository contains coursework and assignments for the Deep Learning course at Konya Food and Agriculture University (KFAU).
 
 ## Repository Structure
 
@@ -89,4 +89,4 @@ See `assignment-1/requirements.txt` for specific version requirements.
 
 ## License
 
-This project is for educational purposes as part of coursework at King Faisal University.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
